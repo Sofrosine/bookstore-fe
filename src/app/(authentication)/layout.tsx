@@ -1,11 +1,13 @@
 "use client";
 
+import PopupError from "@/components/Popup/PopupError";
 import useAuthStore from "@/store/authStore";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { FC, PropsWithChildren, useEffect, useState } from "react";
 
-const Home = () => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
+  const [loading, setLoading] = useState(true);
+
   const authStore = useAuthStore();
 
   const pathname = usePathname();
@@ -16,6 +18,8 @@ const Home = () => {
   }, [pathname, authStore]);
 
   const getUser = () => {
+    setLoading(true);
+
     if (authStore?.data?.token) {
       if (authStore?.data?.user?.status === "pending") {
         router.replace("/dashboard/user-verify");
@@ -23,15 +27,12 @@ const Home = () => {
         router.replace("/dashboard/profile");
       }
     } else {
-      router.replace("/login");
+      setLoading(false);
     }
   };
 
-  return (
-    <div>
-      <div className="circular-progress" />
-    </div>
-  );
+  if (loading) return <></>;
+  return <div>{children}</div>;
 };
 
-export default Home;
+export default Layout;
