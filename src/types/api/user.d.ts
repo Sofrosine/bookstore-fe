@@ -14,6 +14,15 @@ type User = {
     name: string;
   };
   status: UserStatus;
+  title: UserTitle;
+  food_preference: UserFoodPreference;
+  country: string;
+  city: string;
+  province: string;
+  phone_number: string;
+  address: string;
 };
 
 type UserStatus = "pending" | "verified" | "deleted";
+type UserTitle = "mr" | "mrs" | "ms" | "professor" | "dr";
+type UserFoodPreference = "vegetarian" | "non_vegetarian";

@@ -1,12 +1,21 @@
 import { create } from "zustand";
 
-interface State {
+type ErrorState = {
   message: string;
-}
+};
 
-export const useErrorStore = create((set) => ({
+type ErrorAction = {
+  setMessage: (message: string) => void;
+};
+export type ErrorStoreTypes = ErrorState & ErrorAction;
+
+export const useErrorStore = create<ErrorStoreTypes>((set) => ({
   message: "",
-  setMessage: (message: string) => set(() => message),
+  setMessage: (message: string) => {
+    set(() => ({
+      message,
+    }));
+  },
 
   // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
   // removeAllBears: () => set({ bears: 0 }),

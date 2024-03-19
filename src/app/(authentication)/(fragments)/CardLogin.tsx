@@ -26,7 +26,7 @@ const loginSchema = z.object({
 type LoginInput = TypeOf<typeof loginSchema>;
 
 const CardLogin = () => {
-  const errorStore: any = useErrorStore();
+  const errorStore = useErrorStore();
   const authStore = useAuthStore();
   const router = useRouter();
   const { setData } = authStore || {};
@@ -52,14 +52,14 @@ const CardLogin = () => {
       });
       if (response.status === 200) {
         setData(response?.data?.data);
-        if (response?.data?.data?.user?.status === 'pending') {
-          router.replace("/dashboard/user-verify");
+        if (response?.data?.data?.user?.status === "pending") {
+          router.replace("/user-verify");
         } else {
           router.replace("/");
         }
       }
     } catch (error: any) {
-      errorStore?.setMessage({ message: error?.response?.data?.message });
+      errorStore?.setMessage(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

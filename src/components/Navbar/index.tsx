@@ -9,7 +9,7 @@ import useAuthStore from "@/store/authStore";
 const Navbar = () => {
   const authStore = useAuthStore();
 
-  const { setData } = authStore || {};
+  const { logout } = authStore || {};
 
   return (
     <header className="flex items-center justify-between navbar-gradient-background px-[4rem] py-2">
@@ -17,7 +17,7 @@ const Navbar = () => {
         <Image fill alt="logo" src={"/logos/logo-white.png"} />
       </Link>
       <Button
-        onClick={() => setData(null)}
+        onClick={() => logout()}
         className="bg-white text-primary py-3 px-8 hover:bg-white"
       >
         Logout

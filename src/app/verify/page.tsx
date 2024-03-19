@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Verify = () => {
-  const errorStore: any = useErrorStore();
+  const errorStore = useErrorStore();
   const authStore = useAuthStore();
   const { setData } = authStore || {};
 
@@ -41,7 +41,7 @@ const Verify = () => {
         setShowPopup(true);
       }
     } catch (error: any) {
-      errorStore?.setMessage({ message: error?.response?.data?.message });
+      errorStore?.setMessage(error?.response?.data?.message);
       router.replace("/login");
     }
   };

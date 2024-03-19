@@ -10,7 +10,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const UserVerify = () => {
-  const errorStore: any = useErrorStore();
+  const errorStore = useErrorStore();
   const authData = useAuthStore((state) => state.data);
   const [showPopup, setShowPopup] = useState(false);
   const [btnDisable, setBtnDisable] = useState(false);
@@ -27,7 +27,7 @@ const UserVerify = () => {
         setBtnDisable(true);
       }
     } catch (error: any) {
-      errorStore?.setMessage({ message: error?.response?.data?.message });
+      errorStore?.setMessage(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

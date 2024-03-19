@@ -1,3 +1,5 @@
+import useAuthStore from "@/store/authStore";
+import { useErrorStore } from "@/store/errorStore";
 import axios, { AxiosRequestConfig } from "axios";
 
 const excludeRedirectUnauthorized = [
@@ -7,14 +9,14 @@ const excludeRedirectUnauthorized = [
   "/v1/orders",
 ];
 
-const extractToken = () => {
+export const extractToken = () => {
   const userState = localStorage.getItem("@user_data");
   if (!userState) return null;
   const userParse = JSON.parse(userState ?? "");
 
   const { token } = userParse?.state?.data || {};
 
-  return token ? `Bearer ${token}` : "";
+  return token ?? "";
 };
 
 const axiosRequestConfiguration: AxiosRequestConfig = {
@@ -32,7 +34,7 @@ APICall.interceptors.request.use((config: any) => {
   // ALWAYS READ UPDATED TOKEN
   try {
     if (!curConfig.headers["Authorization"]) {
-      curConfig.headers["Authorization"] = extractToken();
+      curConfig.headers["Authorization"] = `Bearer ${extractToken()}`;
     }
     if (!Number(curConfig?.headers["Not-Form"])) {
       curConfig.headers["Content-Type"] = "multipart/form-data";
@@ -46,6 +48,14 @@ APICall.interceptors.request.use((config: any) => {
 APICall.interceptors.response.use(
   (res: any) => res,
   (error: any) => {
+    if (error?.response?.status === 401) {
+      useAuthStore.getState().logout();
+      // @ts-ignore
+      useErrorStore?.getState()?.setMessage!({
+        message: "Your session has been expired, please login again",
+      });
+      window.location.href = "/login";
+    }
     // if (error?.response?.data?.message) {
     //   if (error?.response?.data?.message !== "User not found") {
     //     // toast.error(error?.response?.data?.message);

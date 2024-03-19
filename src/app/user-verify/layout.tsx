@@ -1,6 +1,6 @@
 "use client";
 
-import PopupError from "@/components/Popup/PopupError";
+import Navbar from "@/components/Navbar";
 import useAuthStore from "@/store/authStore";
 import { usePathname, useRouter } from "next/navigation";
 import { FC, PropsWithChildren, useEffect, useState } from "react";
@@ -26,13 +26,22 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       } else {
         router.replace("/dashboard/profile");
       }
-    } else {
       setLoading(false);
+    } else {
+      router.replace("/login");
     }
   };
 
   if (loading) return <></>;
-  return <div>{children}</div>;
+  return (
+    <div className="min-h-[100vh]">
+      <Navbar />
+      <div className="pt-8 px-4 md:px-[16.5rem]">{children}</div>
+      <div className="text-primary text-subtitle-3 absolute bottom-6 flex justify-center w-full">
+        <div>© 2024 by sewarna creative</div>
+      </div>
+    </div>
+  );
 };
 
 export default Layout;

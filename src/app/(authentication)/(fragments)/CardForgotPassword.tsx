@@ -24,7 +24,7 @@ const forgotPasswordSchema = z.object({
 
 type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>;
 const CardForgotPassword = () => {
-  const errorStore: any = useErrorStore();
+  const errorStore = useErrorStore();
   const router = useRouter();
 
   const [showPopup, setShowPopup] = useState(false);
@@ -48,7 +48,7 @@ const CardForgotPassword = () => {
         setShowPopup(true);
       }
     } catch (error: any) {
-      errorStore?.setMessage({ message: error?.response?.data?.message });
+      errorStore?.setMessage(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

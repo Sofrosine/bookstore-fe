@@ -24,7 +24,7 @@ const registerSchema = z.object({
 
 type RegisterInput = TypeOf<typeof registerSchema>;
 const CardRegister = () => {
-  const errorStore: any = useErrorStore();
+  const errorStore = useErrorStore();
 
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -51,12 +51,12 @@ const CardRegister = () => {
       });
       if (response.status === 201) {
         setShowPopup(true);
-        setValue("email", "")
-        setValue("name", "")
-        setValue("password", "")
+        setValue("email", "");
+        setValue("name", "");
+        setValue("password", "");
       }
     } catch (error: any) {
-      errorStore?.setMessage({ message: error?.response?.data?.message });
+      errorStore?.setMessage(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

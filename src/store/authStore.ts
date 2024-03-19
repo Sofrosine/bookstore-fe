@@ -7,6 +7,7 @@ type AuthState = {
 
 type AuthAction = {
   setData: (data: Login | null) => void;
+  logout: () => void;
 };
 export type AuthStoreTypes = AuthState & AuthAction;
 
@@ -19,8 +20,15 @@ const useAuthStore = create(
           data,
         }));
       },
+      logout: () => {
+        set(() => ({
+          data: null,
+        }));
+      },
     }),
-    { name: "@user_data" }
+    {
+      name: "@user_data",
+    }
   )
 );
 

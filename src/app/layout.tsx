@@ -22,8 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(lato.className, "text-black-text")}>
-        <div className="min-h-[100vh]">
-          <div className="absolute h-[100vh] w-[100vw] z-10">
+        <div className="min-h-[100vh] relative">
+          <div className="absolute top-0 left-0 z-10 bottom-0 right-0">
             <Image
               src={"/backgrounds/bg-dashboard.png"}
               fill

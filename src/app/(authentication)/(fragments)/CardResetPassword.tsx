@@ -40,7 +40,7 @@ const CardResetPassword = () => {
   const [loading, setLoading] = useState(true);
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  const errorStore: any = useErrorStore();
+  const errorStore = useErrorStore();
   const params = useSearchParams();
   const router = useRouter();
 
@@ -55,7 +55,7 @@ const CardResetPassword = () => {
       );
       setLoading(false);
     } catch (error: any) {
-      errorStore?.setMessage({ message: error?.response?.data?.message });
+      errorStore?.setMessage(error?.response?.data?.message);
       router.replace("/login");
     }
   };
@@ -71,7 +71,7 @@ const CardResetPassword = () => {
         setShowPopup(true);
       }
     } catch (error: any) {
-      errorStore?.setMessage({ message: error?.response?.data?.message });
+      errorStore?.setMessage(error?.response?.data?.message);
     } finally {
       setSubmitLoading(false);
     }
