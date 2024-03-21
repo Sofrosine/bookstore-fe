@@ -32,6 +32,7 @@ const CardLogin = () => {
   const { setData } = authStore || {};
 
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const methods = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
@@ -97,7 +98,7 @@ const CardLogin = () => {
           <Input
             label="Password"
             placeholder="Input password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             icon={
               <Image
@@ -109,10 +110,16 @@ const CardLogin = () => {
             }
             iconRight={
               <Image
-                src={"/icons/IcEyeClose.svg"}
+                src={
+                  showPassword
+                    ? "/icons/IcEyeOpen.svg"
+                    : "/icons/IcEyeClose.svg"
+                }
                 height={24}
                 width={24}
                 alt="envelope"
+                onClick={() => setShowPassword(!showPassword)}
+                className="hover:cursor-pointer"
               />
             }
             setValue={setValue}

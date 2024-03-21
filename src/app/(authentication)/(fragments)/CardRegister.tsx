@@ -28,6 +28,7 @@ const CardRegister = () => {
 
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
 
@@ -111,7 +112,7 @@ const CardRegister = () => {
             <Input
               label="Password"
               placeholder="Input password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               icon={
@@ -124,10 +125,16 @@ const CardRegister = () => {
               }
               iconRight={
                 <Image
-                  src={"/icons/IcEyeClose.svg"}
+                  src={
+                    showPassword
+                      ? "/icons/IcEyeOpen.svg"
+                      : "/icons/IcEyeClose.svg"
+                  }
                   height={24}
                   width={24}
                   alt="envelope"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="hover:cursor-pointer"
                 />
               }
               setValue={setValue}
