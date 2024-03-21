@@ -42,8 +42,10 @@ const AbstractProgress: FC<Props> = ({ status }) => {
         <div className="flex flex-col items-center">
           <Image
             src={
-              user?.role?.name === "default"
+              user?.registration?.status === "unregistered"
                 ? "/icons/IcCheckEmpty.svg"
+                : user?.registration?.status === "on-progress"
+                ? "/icons/IcTimeBlack.svg"
                 : "/icons/IcCheckGreenSquare.svg"
             }
             alt=""

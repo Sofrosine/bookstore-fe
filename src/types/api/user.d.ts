@@ -6,13 +6,7 @@ type User = {
   name: string;
   email: string;
   password: string;
-  role_id: string;
-  role: {
-    created_at: string;
-    updated_at: string;
-    id: string;
-    name: string;
-  };
+  registration: Registration;
   status: UserStatus;
   title: UserTitle;
   food_preference: UserFoodPreference;

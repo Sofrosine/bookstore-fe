@@ -13,10 +13,10 @@ const AbstractStatus: FC<Props> = ({ data }) => {
   const ImageStatus = useMemo(() => {
     switch (data?.status) {
       case "approved":
-        if (user?.role?.name === "default") {
-          return "/icons/IcFileGreenCircle.svg";
-        } else {
+        if (user?.registration?.status === "success") {
           return "/icons/IcOkCircle.svg";
+        } else {
+          return "/icons/IcFileGreenCircle.svg";
         }
       case "rejected":
         return "/icons/IcDocumentRejectCircle.svg";
@@ -28,7 +28,15 @@ const AbstractStatus: FC<Props> = ({ data }) => {
   const TextStatus = useMemo(() => {
     switch (data?.status) {
       case "approved":
-        if (user?.role?.name === "default") {
+        if (user?.registration?.status === "success") {
+          return (
+            <div className="text-center">
+              <p className="text-grey text-body-1">
+                Abstract presentation progress has been completed
+              </p>
+            </div>
+          );
+        } else {
           return (
             <div className="text-center">
               <p className="text-grey text-body-1">
@@ -37,14 +45,6 @@ const AbstractStatus: FC<Props> = ({ data }) => {
               <p className="text-grey text-body-1">
                 Please complete your participant payment on tab{" "}
                 <span className="font-bold">Register</span> above
-              </p>
-            </div>
-          );
-        } else {
-          return (
-            <div className="text-center">
-              <p className="text-grey text-body-1">
-                Abstract presentation progress has been completed
               </p>
             </div>
           );

@@ -51,9 +51,9 @@ APICall.interceptors.response.use(
     if (error?.response?.status === 401) {
       useAuthStore.getState().logout();
       // @ts-ignore
-      useErrorStore?.getState()?.setMessage!({
-        message: "Your session has been expired, please login again",
-      });
+      useErrorStore?.getState()?.setMessage!(
+        "Your session has been expired, please login again"
+      );
       window.location.href = "/login";
     }
     // if (error?.response?.data?.message) {
