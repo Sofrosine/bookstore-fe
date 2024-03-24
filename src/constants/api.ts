@@ -3,6 +3,7 @@ export const API_URL = {
   DOCUMENT_ME: "/document/me",
   LOGIN: "/login",
   PROFILE: "/profile",
+  PROFILE_PHOTO: '/profile/update_photo',
   REGISTER: "/register",
   REGISTER_RESEND_VERIFY: "/register/resend-verify",
   REGISTER_VERIFY: "/register/verify",

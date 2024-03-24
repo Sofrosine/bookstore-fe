@@ -1,5 +1,6 @@
 "use client";
 
+import { useErrorStore } from "@/store/errorStore";
 import Image from "next/image";
 import React, { FC, useRef, useState } from "react";
 
@@ -24,8 +25,15 @@ const InputUpload: FC<Props> = ({ label, errorMessage, onSelectFile }) => {
     if (files && files.length > 0) {
       const selectedFile = files[0];
       if (selectedFile.type === "application/pdf") {
-        setFile(selectedFile);
-        onSelectFile && onSelectFile(selectedFile);
+        const fileSizeInMB = selectedFile.size / (1024 * 1024); // Convert bytes to megabytes
+        if (fileSizeInMB > 2) {
+          useErrorStore
+            .getState()
+            .setMessage(`File size exceeds ${2}MB limit.`);
+        } else {
+          setFile(selectedFile);
+          onSelectFile && onSelectFile(selectedFile);
+        }
       } else {
         // Handle invalid file type error
         console.error("Invalid file type. Please select a PDF file.");

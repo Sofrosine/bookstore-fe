@@ -15,6 +15,7 @@ type User = {
   province: string;
   phone_number: string;
   address: string;
+  image_url: string;
 };
 
 type UserStatus = "pending" | "verified" | "deleted";
