@@ -24,7 +24,7 @@ const Button: FC<Props> = ({
         className
       )}
       onClick={(e) => {
-        if (!disabled) {
+        if (!disabled && !loading) {
           onClick && onClick(e);
         }
       }}
