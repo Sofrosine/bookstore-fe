@@ -17,11 +17,7 @@ const Home = () => {
 
   const getUser = () => {
     if (authStore?.data?.token) {
-      if (authStore?.data?.user?.status === "pending") {
-        router.replace("/user-verify");
-      } else {
-        router.replace("/dashboard/profile");
-      }
+      router.replace("/home");  
     } else {
       router.replace("/login");
     }

@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import Button from "../Button";
 import useAuthStore from "@/store/authStore";
+import Button from "../Button";
+import Link from "next/link";
 
 const Navbar = () => {
   const authStore = useAuthStore();
@@ -12,16 +10,24 @@ const Navbar = () => {
   const { logout } = authStore || {};
 
   return (
-    <header className="flex items-center justify-between navbar-gradient-background px-[4rem] py-2">
-      <Link href={"/"} className="relative w-[153px] h-[54px]">
-        <Image fill alt="logo" src={"/logos/logo-white.png"} />
-      </Link>
-      <Button
-        onClick={() => logout()}
-        className="bg-white text-primary py-3 px-8 hover:bg-white"
-      >
-        Logout
-      </Button>
+    <header className="flex items-center  justify-between navbar-gradient-background px-[1rem] py-2">
+      <div>
+        <p className="text-white text-subtitle-3 font-bold">
+          {authStore?.data?.user?.name}
+        </p>
+        <p className="text-white text-body-1">
+          Points: {authStore?.data?.user?.points}
+        </p>
+      </div>
+      <div className="flex items-center gap-4">
+        <Link href={"/orders"} className="text-white font-bold">My Orders</Link>
+        <Button
+          onClick={() => logout()}
+          className="bg-white text-primary py-2 px-8 hover:bg-white"
+        >
+          Logout
+        </Button>
+      </div>
     </header>
   );
 };

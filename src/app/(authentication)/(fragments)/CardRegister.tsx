@@ -66,10 +66,7 @@ const CardRegister = () => {
   return (
     <div className="bg-white-06 rounded-2xl border-2 border-primary-white px-8 pt-8 pb-10 shadow-xl w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 z-50">
       <div className="flex items-center justify-center gap-2 px-12 mb-8">
-        <span className="text-subtitle-3 font-bold text-primary">
-          Sign up to
-        </span>
-        <Image src={"/logos/logo.png"} alt="" height={56} width={140} />
+        <span className="text-subtitle-3 font-bold text-primary">Sign up</span>
       </div>
       <FormProvider {...methods}>
         <form
@@ -151,7 +148,7 @@ const CardRegister = () => {
             router.push("/login");
           }}
           title="Registration Completed Successfully"
-          description="Please check your registered email for email verification"
+          description="Please login"
         />
       )}
     </div>

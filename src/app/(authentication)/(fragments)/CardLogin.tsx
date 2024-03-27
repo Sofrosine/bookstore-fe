@@ -52,12 +52,11 @@ const CardLogin = () => {
         password: data?.password,
       });
       if (response.status === 200) {
-        setData(response?.data?.data);
-        if (response?.data?.data?.user?.status === "pending") {
-          router.replace("/user-verify");
-        } else {
-          router.replace("/");
-        }
+        setData({
+          user: response?.data?.data,
+          token: response?.data?.token,
+        });
+        router.replace("/home");
       }
     } catch (error: any) {
       errorStore?.setMessage(error?.response?.data?.message);
@@ -69,10 +68,7 @@ const CardLogin = () => {
   return (
     <div className="bg-white-06 rounded-2xl border-2 border-primary-white px-8 pt-8 pb-10 shadow-xl w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 z-50">
       <div className="flex items-center justify-center gap-2 px-12 mb-8">
-        <span className="text-subtitle-3 font-bold text-primary">
-          Sign in to
-        </span>
-        <Image src={"/logos/logo.png"} alt="" height={56} width={140} />
+        <span className="text-subtitle-2 font-bold text-primary">Sign in</span>
       </div>
       <FormProvider {...methods}>
         <form
@@ -124,20 +120,6 @@ const CardLogin = () => {
             }
             setValue={setValue}
           />
-          <div className="flex items-center justify-between">
-            <Input
-              label="Remember me"
-              type="checkbox"
-              name="remember_me"
-              setValue={setValue}
-            />
-            <Link
-              href={"/forgot-password"}
-              className="text-body-2 hover:text-primary hover:cursor-pointer"
-            >
-              Forgot Password
-            </Link>
-          </div>
           <Button type="submit" loading={loading}>
             Sign In
           </Button>

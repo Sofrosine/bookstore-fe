@@ -13,7 +13,6 @@ export const extractToken = () => {
   const userState = localStorage.getItem("@user_data");
   if (!userState) return null;
   const userParse = JSON.parse(userState ?? "");
-
   const { token } = userParse?.state?.data || {};
 
   return token ?? "";

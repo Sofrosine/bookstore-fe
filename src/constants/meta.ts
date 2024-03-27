@@ -1,10 +1,9 @@
 import { Metadata } from "next";
 
 const META_DEFAULT = {
-  title: "INTERNATIONAL BIOETHICS & HUMANITIES CONFERENCE 2024 ",
-  description:
-    "Welcome to INTERNATIONAL BIOETHICS & HUMANITIES CONFERENCE 2024 Official Website",
-  keywords: "ibhc,ibhc 2024,INTERNATIONAL BIOETHICS & HUMANITIES CONFERENCE, INTERNATIONAL BIOETHICS & HUMANITIES CONFERENCE 2024",
+  title: "Bookstore 2024 ",
+  description: "Welcome to Bookstore 2024 Official Website",
+  keywords: "Bookstore,Bookstore 2024,Bookstore, Bookstore 2024",
 };
 
 export const META: Metadata = {
@@ -24,9 +23,9 @@ export const META: Metadata = {
     },
   },
   openGraph: {
-    siteName: "IBHC 2024",
+    siteName: "Bookstore 2024",
     type: "website",
-    url: "https://www.ibhc2024.id",
+    url: "",
     title: META_DEFAULT.title,
     description: META_DEFAULT.description,
     images: "/logo.png",

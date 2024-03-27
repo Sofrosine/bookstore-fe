@@ -1,8 +1,8 @@
 import APICall from "@/config/axios";
 import { useEffect, useState } from "react";
 
-export const useFetch = (url: string, runFirst: boolean = true) => {
-  const [data, setData] = useState<any>(null);
+export const useFetch = <T>(url: string, runFirst: boolean = true) => {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,7 +17,7 @@ export const useFetch = (url: string, runFirst: boolean = true) => {
     try {
       const response = await APICall.get(url);
       if (response.status === 200) {
-        setData(response.data);
+        setData(response?.data);
         if (error) {
           setError(null);
         }
@@ -31,5 +31,3 @@ export const useFetch = (url: string, runFirst: boolean = true) => {
 
   return { data, loading, error, fetchData };
 };
-
-//In your component:

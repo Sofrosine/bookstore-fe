@@ -1,6 +1,5 @@
 "use client";
 
-import PopupError from "@/components/Popup/PopupError";
 import useAuthStore from "@/store/authStore";
 import { usePathname, useRouter } from "next/navigation";
 import { FC, PropsWithChildren, useEffect, useState } from "react";
@@ -19,13 +18,8 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   const getUser = () => {
     setLoading(true);
-
     if (authStore?.data?.token) {
-      if (authStore?.data?.user?.status === "pending") {
-        router.replace("/user-verify");
-      } else {
-        router.replace("/dashboard/profile");
-      }
+      router.replace("/home");
     } else {
       setLoading(false);
     }

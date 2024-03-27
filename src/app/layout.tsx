@@ -9,8 +9,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   ...META,
   title: {
-    template: "%s | IBHC 2024",
-    default: "IBHC 2024",
+    template: "%s | Bookstore 2024",
+    default: "Bookstore 2024",
   },
 };
 

@@ -1,15 +1,7 @@
 export const API_URL = {
-  DOCUMENT: "/document",
-  DOCUMENT_ME: "/document/me",
+  BOOKS: '/books',
   LOGIN: "/login",
-  PROFILE: "/profile",
-  PROFILE_PHOTO: '/profile/update_photo',
+  ORDERS: '/orders',
+  PROFILE: "/users/me",
   REGISTER: "/register",
-  REGISTER_RESEND_VERIFY: "/register/resend-verify",
-  REGISTER_VERIFY: "/register/verify",
-  REGISTRATION: "/registration",
-  RESET_PASSWORD: "/reset-password",
-  RESET_PASSWORD_VERIFY: "/reset-password/verify",
-  RESET_PASSWORD_CHANGE: "/reset-password/change",
-  TICKET: "/ticket",
 };

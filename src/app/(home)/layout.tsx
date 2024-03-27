@@ -13,7 +13,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     data: profileData,
     loading: profileLoading,
     fetchData,
-  } = useFetch(API_URL.PROFILE, false);
+  } = useFetch<{ data: User }>(API_URL.PROFILE, false);
   const [loading, setLoading] = useState(true);
 
   const authStore = useAuthStore();
@@ -40,12 +40,8 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   const getUser = () => {
     setLoading(true);
-    if (authStore?.data?.token) {
-      if (authStore?.data?.user?.status === "pending") {
-        setLoading(false);
-      } else {
-        router.replace("/dashboard/profile");
-      }
+    if (extractToken()) {
+      setLoading(false);
     } else {
       router.replace("/login");
     }
@@ -53,12 +49,13 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   if (loading || profileLoading) return <></>;
   return (
-    <div className="min-h-[100vh]">
-      <Navbar />
-      <div className="pt-8 px-4 md:px-[16.5rem]">{children}</div>
-      <div className="text-primary text-subtitle-3 absolute bottom-6 flex justify-center w-full">
-        <div>© 2024 by sewarna creative</div>
+    <div className="min-h-[100vh] grid grid-cols-12">
+      <div className="hidden md:block md:col-span-3 2xl:col-span-4" />
+      <div className="col-span-12 md:col-span-6 2xl:col-span-4">
+        <Navbar />
+        <div className="mt-0">{children}</div>
       </div>
+      <div className="hidden md:block md:col-span-3 2xl:col-span-4" />
     </div>
   );
 };

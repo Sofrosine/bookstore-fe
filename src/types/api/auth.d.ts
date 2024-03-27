@@ -1,4 +1,4 @@
-type Login = {
+interface Login {
   user: User;
   token: string;
-};
+}
